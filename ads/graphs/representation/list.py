@@ -18,6 +18,23 @@ class Unidirected_graph:
         return v in self.adj[u] or u in self.adj[v]
 
 
+class Directed_graph:
+    def __init__(self, n):
+        self.amount_of_vertices = n
+        self.adj = [[] for _ in xrange(n)] # could be set
+
+    def connect(self, u, v):
+        self.adj[u].append(v) # careful with duplicates, when list
+
+    def disconnect(self, u, v):
+        self.adj[u].remove(v)
+
+    def neighbours(self, u):
+        return self.adj[u]
+
+    def is_edge(self, u, v):
+        return v in self.adj[u]
+
 # Weights is seperate dict, but weight could be stored in node
 class Unidirected_graph_weighted:
     def __init__(self, n):

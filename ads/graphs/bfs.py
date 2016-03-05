@@ -3,7 +3,7 @@ import collections
 
 def bfs_distances_and_paths(g, u, v):
     distances = [None] * g.amount_of_vertices
-    previous = distances[:]
+    previous = [None] * g.amount_of_vertices
     queue, visited = collections.deque(), set()
     distances[u] = 0
 
@@ -17,9 +17,9 @@ def bfs_distances_and_paths(g, u, v):
         for v in g.neighbours(current):
             if v not in visited:
                 queue.append(v)
+                visited.add(v)
                 distances[v] = distances[current] + 1
                 previous[v] = current
-                visited.add(v)
 
 
 
