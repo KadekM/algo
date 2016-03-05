@@ -8,11 +8,11 @@ def bfs_distances_and_paths(g, u, v):
     distances[u] = 0
 
     queue.append(u)
+    visited.add(u)
+
     while len(queue) != 0:
         print(queue, visited)
         current = queue.popleft()
-
-        visited.add(current)
 
         for v in g.neighbours(current):
             if v not in visited:

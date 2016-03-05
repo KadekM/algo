@@ -1,5 +1,4 @@
 from ads.graphs.representation.list import Unidirected_graph
-import collections
 
 def dfs(g, start):
     visited = set()
