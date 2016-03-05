@@ -9,7 +9,7 @@ def bfs_distances_and_paths(g, u, v):
 
     queue.append(u)
     while len(queue) != 0:
-        print queue, visited
+        print(queue, visited)
         current = queue.popleft()
 
         visited.add(current)
@@ -37,10 +37,10 @@ g.connect(1, 4)
 g.connect(3, 4)
 g.connect(4, 5)
 
-print g.adj
+print(g.adj)
 
 distances, paths = bfs_distances_and_paths(g, 0, 2)
-print distances
+print(distances)
 #decode path to 4:
 prev = 5
 path = []
@@ -48,6 +48,6 @@ while prev is not None:
     prev = paths[prev]
     path.append(prev)
 
-print path
+print(path)
 
 

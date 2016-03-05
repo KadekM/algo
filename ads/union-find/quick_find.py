@@ -3,7 +3,7 @@ class Union_find:
     def __init__(self, amount_of_elems):
         # each starts with its own group
         # value is group id
-        self.ids = range(amount_of_elems)
+        self.ids = list(range(amount_of_elems))
 
     # O(1)
     def find(self, x):
@@ -23,13 +23,13 @@ class Union_find:
 
 uf = Union_find(10)
 
-print uf.connected(1, 2)
+print(uf.connected(1, 2))
 uf.union(1, 2)
 uf.union(1, 3)
 uf.union(3, 4)
 uf.union(6, 7)
-print uf.connected(1, 2)
-print uf.connected(1, 4)
-print uf.connected(1, 6)
+print(uf.connected(1, 2))
+print(uf.connected(1, 4))
+print(uf.connected(1, 6))
 
 

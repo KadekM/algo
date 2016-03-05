@@ -5,7 +5,7 @@ import random
 
 # Initializes skipped list
 def skip_list(xs):
-    res = [zip(xs, xrange(len(xs)))]
+    res = [zip(xs, range(len(xs)))]
 
     row = 0
     while True:
@@ -34,7 +34,7 @@ def insert(skipped, x):
     return None
 
 sl = skip_list([1,2,3,4,5,6,7,8,9,10])
-print sl
-print find(sl, 5)
+print(sl)
+print(find(sl, 5))
 
 

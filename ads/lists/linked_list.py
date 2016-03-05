@@ -9,7 +9,7 @@ class Node:
 def display(xs):
     x = xs
     while x is not None:
-        print x.value
+        print(x.value)
         x = x.next
 
 
@@ -35,5 +35,5 @@ def find(xs, v):
 xs = Node(3,Node(2,Node(4)))
 append(xs, 6)
 display(xs)
-print find(xs, 5)
-print find(xs, 6).value
+print(find(xs, 5))
+print(find(xs, 6).value)

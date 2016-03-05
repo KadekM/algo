@@ -1,7 +1,7 @@
 # Weighted quick union (lazy approach)
 class Union_find:
     def __init__(self, number_of_elements):
-        self.ids = range(number_of_elements)
+        self.ids = list(range(number_of_elements))
         self.cnt = [1] * number_of_elements
 
     def load(self, xs):
@@ -46,13 +46,13 @@ class Union_find:
 uf = Union_find(10)
 
 uf.load([0,1,9,4,9,6,6,7,8,9])
-print uf.find(3) # should be 9
-print uf.find(2) # should be 9
-print uf.find(7) # should be 7
-print uf.connected(1, 9) # should be False
-print uf.connected(2, 4) # should be True
+print(uf.find(3)) # should be 9
+print(uf.find(2)) # should be 9
+print(uf.find(7)) # should be 7
+print(uf.connected(1, 9)) # should be False
+print(uf.connected(2, 4)) # should be True
 
 uf.union(1,9)
-print uf.connected(1, 9) # should be True
-print uf.connected(2, 8) # should be False
+print(uf.connected(1, 9)) # should be True
+print(uf.connected(2, 8)) # should be False
 

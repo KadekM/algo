@@ -1,7 +1,7 @@
 class Unidirected_graph:
     def __init__(self, n):
         self.amount_of_vertices = n
-        self.adj = [[] for _ in xrange(n)] # could be set
+        self.adj = [[] for _ in range(n)] # could be set
 
     def connect(self, u, v):
         self.adj[u].append(v) # careful with duplicates, when list
@@ -21,7 +21,7 @@ class Unidirected_graph:
 class Directed_graph:
     def __init__(self, n):
         self.amount_of_vertices = n
-        self.adj = [[] for _ in xrange(n)] # could be set
+        self.adj = [[] for _ in range(n)] # could be set
 
     def connect(self, u, v):
         self.adj[u].append(v) # careful with duplicates, when list
@@ -39,7 +39,7 @@ class Directed_graph:
 class Unidirected_graph_weighted:
     def __init__(self, n):
         self.amount_of_vertices = n
-        self.adj = [[] for _ in xrange(n)] # could be set
+        self.adj = [[] for _ in range(n)] # could be set
         self.weights = {}
 
     def connect(self, u, v, w):
@@ -66,13 +66,13 @@ class Unidirected_graph_weighted:
 
 #g = Unidirected_graph(5)
 #g.connect(1,2)
-#print g.is_edge(3,1)
+#print(g.is_edge(3,1))
 #g.connect(3,2)
-#print g.is_edge(3,2)
+#print(g.is_edge(3,2))
 
 #g = Unidirected_graph_weighted(5)
 #g.connect(1,2, 55)
-#print g.is_edge(3,1)
+#print(g.is_edge(3,1))
 #g.connect(3,2, 95)
-#print g.edge(3,2)
-#print g.neighbours(2)
+#print(g.edge(3,2))
+#print(g.neighbours(2))

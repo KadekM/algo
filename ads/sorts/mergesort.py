@@ -33,6 +33,6 @@ def merge_sort(xs):
 
 import random
 arr = random.sample(range(20), 15)
-print arr
+print(arr)
 
-print merge_sort(arr)
+print(merge_sort(arr))

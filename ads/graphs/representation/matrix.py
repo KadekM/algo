@@ -1,7 +1,7 @@
 class Undirected_graph:
     def __init__(self, n):
         self.amount_of_vertices = n
-        self.adj = [[False for _ in xrange(n)] for _ in xrange(n)]
+        self.adj = [[False for _ in range(n)] for _ in range(n)]
 
     def connect(self, u, v):
         self.adj[u][v] = True
@@ -21,7 +21,7 @@ class Undirected_graph:
 class Undirected_graph_weighted:
     def __init__(self, n):
         self.amount_of_vertices = n
-        self.adj = [[None for _ in xrange(n)] for _ in xrange(n)]
+        self.adj = [[None for _ in range(n)] for _ in range(n)]
 
     def connect(self, u, v, w):
         self.adj[u][v] = w

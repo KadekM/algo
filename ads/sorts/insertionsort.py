@@ -13,6 +13,6 @@ def insertion_sort(xs):
 import random
 arr = random.sample(range(20), 15)
 
-print arr
+print(arr)
 insertion_sort(arr)
-print arr
+print(arr)

@@ -15,7 +15,7 @@ def topological_sort(g):
 
         result.append(u)
 
-    vertices = xrange(g.amount_of_vertices)
+    vertices = range(g.amount_of_vertices)
     for u in vertices:
         if u not in visited:
             visit(u)
@@ -33,4 +33,4 @@ g.connect(1, 4)
 g.connect(3, 4)
 g.connect(4, 5)
 
-print topological_sort(g)
+print(topological_sort(g))
