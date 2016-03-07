@@ -1,5 +1,4 @@
-from ads.graphs.representation.list import Directed_graph
-import collections
+from ads.graph.via_adj_list import Directed_graph
 
 
 def topological_sort(g):

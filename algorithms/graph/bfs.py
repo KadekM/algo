@@ -1,5 +1,6 @@
-from ads.graphs.representation.list import Unidirected_graph
 import collections
+
+from ads.graph.via_adj_list import Unidirected_graph
 
 def bfs_distances_and_paths(g, u, v):
     distances = [None] * g.amount_of_vertices
