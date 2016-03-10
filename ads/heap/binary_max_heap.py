@@ -2,8 +2,10 @@ def find_max(xs): return xs[0]
 
 def delete_max(xs):
     max = xs[0]
-    xs[0] = xs.pop(len(xs)-1) # root is now last element, last element is removed
-    shift_down(xs, 0)
+    if len(xs) == 1: xs.pop()
+    else:
+        xs[0] = xs.pop() # change first and last, and remove 0 len
+        shift_down(xs, 0)
     return max
 
 def heap_swap(xs, i, j):

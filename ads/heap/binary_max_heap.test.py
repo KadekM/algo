@@ -12,6 +12,8 @@ insert(hp, 12)
 print(hp)
 
 print(delete_max(hp))
+print(hp)
+
 print(delete_max(hp))
 print(hp)
 increase_key(hp, 2, 5)
