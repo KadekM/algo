@@ -1,9 +1,12 @@
 from ads.graph.via_adj_matrix import *
-import copy
+from copy import *
 
 
+# https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
+# O(V^2) when adj.matrix, O(E+V) when adj.list
 def kosaraju(g):
 
+    # Build stack of vertices when leaving
     stack = []
     visited = [False] * g.amount_of_vertices
 
@@ -19,32 +22,30 @@ def kosaraju(g):
             visited[i] = True
             dfs(i)
 
-    #print(stack)
 
-    # second visit on transpose matrix
-
-    gg = copy.copy(g)
+    # Second visit on transpose matrix (edges reversed)
+    gg = copy(g)
     gg.transpose()
 
+    # Reset visited
     visited = [False] * gg.amount_of_vertices
-    groups = [-1] * gg.amount_of_vertices
+    groups = []
 
-    def dfsT(current, groupId):
-        visited[el] = True
-        groups[el] = groupId
+    def dfsT(current):
+        gr = [current]
 
         for v in gg.neighbours(current):
             if not visited[v]:
                 visited[v] = True
-                groups[v] = groupId
-                dfsT(v, groupId)
+                gr += dfsT(v)
+        return gr
 
-    groupId = 0
     while len(stack) > 0:
         el = stack.pop()
-        if visited[el]: continue
-        dfsT(el, groupId)
-        groupId += 1
+        if not visited[el]:
+            visited[el] = True
+            next_group = dfsT(el)
+            groups.append(next_group)
 
     return groups
 

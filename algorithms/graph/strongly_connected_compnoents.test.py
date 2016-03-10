@@ -1,4 +1,8 @@
-from ads.graph.via_adj_matrix import Directed_graph
+# Free to swap imports. Complexity changes.
+
+#from ads.graph.via_adj_matrix import Directed_graph
+from ads.graph.via_adj_list import Directed_graph
+
 from algorithms.graph.strongly_connected_components import *
 
 Z = Directed_graph(3)

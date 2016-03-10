@@ -35,6 +35,14 @@ class Directed_graph:
     def is_edge(self, u, v):
         return v in self.adj[u]
 
+    def tranpose(self):
+        adjT = [[] for _ in range(self.amount_of_vertices)]
+        for u, xs in enumerate(self.adj):
+            for v in xs:
+                adjT[v].append(u)
+        self.adj = adjT
+
+
 # Weights is seperate dict, but weight could be stored in node
 class Unidirected_graph_weighted:
     def __init__(self, n):
