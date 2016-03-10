@@ -41,15 +41,23 @@ class Undirected_graph_weighted:
         return self.adj[u][v] is not None or self.adj[v][u] is not None
 
 
-#x = Undirected_graph(5)
-#x.connect(2,4)
-#x.connect(2,1)
-#print x.is_edge(1,2)
-#print x.neighbours(2)
+class Directed_graph:
+    def __init__(self, n):
+        self.amount_of_vertices = n
+        self.adj = [[False for _ in range(n)] for _ in range(n)]
 
+    def connect(self, u, v):
+        self.adj[u][v] = True
 
-#x = Undirected_graph_weighted(5)
-#x.connect(2,4, 94)
-#x.connect(2,1, 55)
-#print x.neighbours(2)
-#print x.edge(1,2)
+    def disconnect(self, u, v):
+        self.adj[u][v] = False
+
+    def neighbours(self, u):
+        return [v for v, con in enumerate(self.adj[u]) if con]
+
+    def is_edge(self, u, v):
+        return self.adj[u][v]
+
+    def transpose(self):
+        self.adj = [list(x) for x in zip(*self.adj)]
+
