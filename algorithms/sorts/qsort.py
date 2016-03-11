@@ -1,3 +1,5 @@
+from random import *
+
 # Not in memory. Only conceptual impl
 # Quick sort is by definition in memory sort!
 
@@ -9,11 +11,19 @@ def qsort_rec(xs):
     return qsort_rec(left) + [xs[pivot]] + qsort_rec(right)
 
 
-# Correct qsort
-def qsort(xs): pass
+# In memory qsort
+def qsort(xs, l=0, r=None):
+    if r is None: r = len(xs)-1
+    if l >= r: return
 
+    i, j = l, r
+    pivot = xs[randint(i, j)]
+    while i <= j:
+        while xs[i] < pivot: i += 1
+        while xs[j] > pivot: j -= 1
+        if i <= j:
+            xs[i], xs[j] = xs[j], xs[i]
+            i, j = i+1, j-1
 
-import random
-arr = random.sample(range(20), 15)
-print(arr)
-print(qsort_rec(arr))
+    qsort(xs, l, j)
+    qsort(xs, i, r)

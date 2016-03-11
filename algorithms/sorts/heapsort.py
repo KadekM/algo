@@ -1,5 +1,6 @@
 from ads.heap.binary_max_heap import *
 
+# heapsort should be in memory though
 def heapsort(xs):
     hp = []
     for x in xs: insert(hp, x)
