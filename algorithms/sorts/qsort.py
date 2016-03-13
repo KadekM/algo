@@ -27,3 +27,26 @@ def qsort(xs, l=0, r=None):
 
     qsort(xs, l, j)
     qsort(xs, i, r)
+
+
+def qsort2(xs, l=0, r=None):
+    if r is None: r = len(xs)-1
+
+    def partition():
+        pivot = xs[randint(l,r)]
+        i, j = l-1, r+1
+        while True:
+            while True:
+                i += 1
+                if xs[i] >= pivot: break
+            while True:
+                j -= 1
+                if xs[j] <= pivot: break
+            if i >= j: return j
+            xs[i], xs[j] = xs[j], xs[i]
+
+    if l < r:
+        p = partition()
+        qsort2(xs, l, p)
+        qsort2(xs, p+1, r)
+
