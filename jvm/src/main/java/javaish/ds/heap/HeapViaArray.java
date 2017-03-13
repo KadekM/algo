@@ -3,8 +3,8 @@ package javaish.ds.heap;
 public class HeapViaArray {
     private int elems[];
 
-    public HeapViaArray(final int size) {
-        elems = new int[size];
+    public HeapViaArray() {
+        elems = new int[0];
     }
 
     public void insert(int element) {
@@ -26,16 +26,22 @@ public class HeapViaArray {
         return -1;
     }
 
+    public int[] elems() {
+        return elems.clone();
+    }
+
     private void heapify(int idx) {
-        if (idx >= elems.length) {
-            return;
+        int leftIdx = idx * 2;
+        int rightIdx = idx * 2 + 1;
+
+        if (leftIdx < elems.length && elems[leftIdx] > elems[idx]) {
+            swap(idx, leftIdx);
+            heapify(leftIdx);
         }
-
-        int left = idx * 2;
-        int right = idx * 2 + 1;
-
-        heapify(left);
-        heapify(right);
+        else if (rightIdx < elems.length && elems[rightIdx] > elems[idx]) {
+            swap(idx, rightIdx);
+            heapify(rightIdx);
+        }
     }
 
     private void swap(int idx1, int idx2) {

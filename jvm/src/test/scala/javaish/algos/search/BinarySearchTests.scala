@@ -35,10 +35,10 @@ class BinarySearchTests extends FlatSpec with Matchers {
 
 class BinarySearchProps extends PropSpec with PropertyChecks with Matchers {
 
-  val nonEmptyArray = Gen.nonEmptyListOf(Arbitrary.arbInt.arbitrary)
+  val nonEmpty = Gen.nonEmptyListOf(Arbitrary.arbInt.arbitrary)
 
   property("element from array is always found") {
-    forAll(nonEmptyArray) { xs =>
+    forAll(nonEmpty) { xs =>
       val arr = xs.toArray
       scala.util.Sorting.quickSort(arr)
       forAll(Gen.choose(0, arr.length-1)) { idx =>
