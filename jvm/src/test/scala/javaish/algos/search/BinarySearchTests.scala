@@ -47,4 +47,10 @@ class BinarySearchProps extends PropSpec with PropertyChecks with Matchers {
     }
   }
 
+  property("empty array always return -1") {
+    val emptyArr = List.empty[Int].toArray
+    forAll { (idx: Int) =>
+      BinarySearch.search(idx, emptyArr) shouldBe -1
+    }
+  }
 }
