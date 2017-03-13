@@ -39,10 +39,12 @@ class BinarySearchProps extends PropSpec with PropertyChecks with Matchers {
 
   property("element from array is always found") {
     forAll(nonEmptyArray) { xs =>
-      val arr = xs.distinct.toArray
+      val arr = xs.toArray
       scala.util.Sorting.quickSort(arr)
       forAll(Gen.choose(0, arr.length-1)) { idx =>
-        BinarySearch.search(arr(idx), arr) shouldBe idx
+        val foundOn = BinarySearch.search(arr(idx), arr)
+        // dont compare indexes, because for repeating elements they may not be same [1, 2, 2, 3], which 2?
+        arr(foundOn) shouldBe arr(idx)
       }
     }
   }
