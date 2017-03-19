@@ -46,11 +46,9 @@ class HeapViaArraySpec extends PropSpec with PropertyChecks with Matchers {
   property("pop returns minimum") {
     forAll(genNonEmptyHeap) { heap =>
       while (heap.elems().length >= 1) {
-        println(s"heap.elems=${heap.elems().mkString(",")}")
         val before = heap.elems()
         val popped = heap.pop()
         popped shouldBe before.min
-        println(s"$popped . after heap.elems=${heap.elems().mkString(",")}")
       }
     }
   }

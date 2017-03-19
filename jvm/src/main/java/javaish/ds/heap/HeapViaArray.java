@@ -25,8 +25,15 @@ public class HeapViaArray {
         }
 
         int result = elems[0];
-        elems = Arrays.copyOfRange(elems, 1, elems.length);
-        shiftDown(0);
+
+        if (elems.length == 1) {
+            elems = new int[0];
+        } else {
+            elems[0] = elems[elems.length - 1];
+            elems = Arrays.copyOf(elems, 1);
+            shiftDown(0);
+        }
+
         return result;
     }
 
