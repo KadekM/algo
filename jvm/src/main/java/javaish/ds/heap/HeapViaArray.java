@@ -1,5 +1,7 @@
 package javaish.ds.heap;
 
+import java.util.Arrays;
+
 public class HeapViaArray {
     private int elems[];
 
@@ -8,10 +10,9 @@ public class HeapViaArray {
     }
 
     public void insert(int element) {
-        int[] newElems = new int[elems.length + 1];
-        newElems[0] = element;
-        elems = newElems;
-        heapify(0);
+        elems = Arrays.copyOf(elems, elems.length+1);
+        elems[elems.length-1] = element;
+        shiftUp(elems.length-1);
     }
 
     public int top() {
@@ -23,24 +24,39 @@ public class HeapViaArray {
             throw new IllegalStateException("zero elements");
         }
 
-        return -1;
+        int result = elems[0];
+        elems = Arrays.copyOfRange(elems, 1, elems.length);
+        shiftDown(0);
+        return result;
     }
 
     public int[] elems() {
         return elems.clone();
     }
 
-    private void heapify(int idx) {
-        int leftIdx = idx * 2;
-        int rightIdx = idx * 2 + 1;
+    private void shiftUp(int idx) {
+        if (idx <= 0) return;
 
-        if (leftIdx < elems.length && elems[leftIdx] > elems[idx]) {
-            swap(idx, leftIdx);
-            heapify(leftIdx);
+        int parentIdx = (idx-1)/2;
+        if (elems[parentIdx] > elems[idx]) {
+            swap(parentIdx, idx);
+            shiftUp(parentIdx);
         }
-        else if (rightIdx < elems.length && elems[rightIdx] > elems[idx]) {
-            swap(idx, rightIdx);
-            heapify(rightIdx);
+    }
+
+    private void shiftDown(int idx) {
+        int childIdx = idx * 2 + 1;
+
+        if (childIdx  >= elems.length)
+            return;
+
+        if (childIdx + 1 < elems.length && elems[childIdx + 1] < elems[childIdx]) {
+            childIdx += 1;
+        }
+
+        if (elems[childIdx] < elems[idx]) {
+            swap(idx, childIdx);
+            shiftDown(childIdx);
         }
     }
 
