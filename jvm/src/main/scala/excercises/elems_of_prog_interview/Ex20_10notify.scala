@@ -60,8 +60,6 @@ object Ex20_10notify extends App {
   }
 
   class Consumer(shared: Buffer) {
-    val r = scala.util.Random
-
     def start() =
       new Thread() {
         override def run(): Unit = {
@@ -80,8 +78,6 @@ object Ex20_10notify extends App {
         }
       }.start()
   }
-
-  val r = scala.util.Random
 
   val buffer = new Buffer()
 
