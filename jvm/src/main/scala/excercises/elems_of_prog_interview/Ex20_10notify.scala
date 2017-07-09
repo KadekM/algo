@@ -1,10 +1,6 @@
 package excercises.elems_of_prog_interview
 
-// just first idea, obviously one with notify is better
-
-object Ex20_10 extends App {
-  import scala.concurrent.ExecutionContext.Implicits.global
-  import scala.concurrent.Future
+object Ex20_10notify extends App {
 
   def printThread(msg: String) =
     println(s"${Thread.currentThread.getId} : $msg")
@@ -43,50 +39,53 @@ object Ex20_10 extends App {
   class Producer(shared: Buffer) {
     val r = scala.util.Random
 
-    def start() = new Thread() {
-      override def run(): Unit = {
-        while (true) {
-          val inserted = shared.synchronized {
-            if (shared.canPut) {
-              val str = (1 to 8).map(_ => r.nextPrintableChar).mkString
-              shared.put(str)
-              printThread("Putting")
-              true
-            } else {
-              printThread("Can't put")
-              false
+    def start() =
+      new Thread() {
+        override def run(): Unit = {
+          while (true) {
+            val inserted = shared.synchronized {
+              if (shared.canPut) {
+                val str = (1 to 8).map(_ => r.nextPrintableChar).mkString
+                shared.put(str)
+                printThread("Putting")
+                shared.notify()
+              } else {
+                printThread("Can't put")
+                shared.wait()
+              }
             }
           }
-          if (!inserted) Thread.sleep(r.nextInt(300))
         }
-      }
-    }.start()
+      }.start()
   }
 
   class Consumer(shared: Buffer) {
     val r = scala.util.Random
 
-    def start() = new Thread() {
-      override def run(): Unit = {
-        while (true) {
-          val consumed = shared.synchronized {
-            if (shared.hasNext) {
-              Some(shared.next())
-            } else {
-              None
+    def start() =
+      new Thread() {
+        override def run(): Unit = {
+          while (true) {
+            shared.synchronized {
+              val consumed =
+                if (shared.hasNext) {
+                  Some(shared.next())
+                } else {
+                  None
+                }
+
+              consumed match {
+                case Some(x) =>
+                  printThread(s"Consuming: $x")
+                  shared.notify()
+                case None =>
+                  printThread("Sleeping")
+                  shared.wait()
+              }
             }
           }
-
-          consumed match {
-            case Some(x) =>
-              printThread(s"Consuming: $x")
-            case None =>
-              printThread("Sleeping")
-              Thread.sleep(r.nextInt(300))
-          }
         }
-      }
-    }.start()
+      }.start()
   }
 
   val r = scala.util.Random
