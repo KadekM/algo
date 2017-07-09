@@ -43,7 +43,7 @@ object Ex20_10notify extends App {
       new Thread() {
         override def run(): Unit = {
           while (true) {
-            val inserted = shared.synchronized {
+            shared.synchronized {
               if (shared.canPut) {
                 val str = (1 to 8).map(_ => r.nextPrintableChar).mkString
                 shared.put(str)
@@ -67,15 +67,14 @@ object Ex20_10notify extends App {
         override def run(): Unit = {
           while (true) {
             shared.synchronized {
-              val consumed =
-                if (shared.hasNext) {
-                  val consumed = shared.next()
-                  printThread(s"Consuming: $consumed")
-                  shared.notify()
-                } else {
-                  printThread("Sleeping")
-                  shared.wait()
-                }
+              if (shared.hasNext) {
+                val consumed = shared.next()
+                printThread(s"Consuming: $consumed")
+                shared.notify()
+              } else {
+                printThread("Sleeping")
+                shared.wait()
+              }
             }
           }
         }
