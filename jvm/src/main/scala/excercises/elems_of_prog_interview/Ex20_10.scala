@@ -1,7 +1,5 @@
 package excercises.elems_of_prog_interview
 
-// just first idea, obviously one with notify is better
-
 object Ex20_10 extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
   import scala.concurrent.Future

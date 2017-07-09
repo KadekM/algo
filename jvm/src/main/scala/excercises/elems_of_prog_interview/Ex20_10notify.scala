@@ -69,19 +69,13 @@ object Ex20_10notify extends App {
             shared.synchronized {
               val consumed =
                 if (shared.hasNext) {
-                  Some(shared.next())
-                } else {
-                  None
-                }
-
-              consumed match {
-                case Some(x) =>
-                  printThread(s"Consuming: $x")
+                  val consumed = shared.next()
+                  printThread(s"Consuming: $consumed")
                   shared.notify()
-                case None =>
+                } else {
                   printThread("Sleeping")
                   shared.wait()
-              }
+                }
             }
           }
         }
