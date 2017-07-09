@@ -9,7 +9,7 @@ object Ex20_10notify extends App {
     val n = 10
     private val arr = Array.ofDim[String](n)
     private var readAt = 0
-    private var insertAt = 1
+    private var insertAt = 0
 
     def hasNext: Boolean =
       readAt < insertAt
